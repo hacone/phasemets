@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<smrtpipeSettings>
+
+    <protocol version="2.3.0" id="Mods" editable="true">
+        <param name="name" label="Protocol Name">
+            <value>Mapping</value>
+        </param>
+        <param name="reference" hidden="true">
+            <value>REFERENCE</value>
+        </param>
+        <param name="control" hidden="true">
+            <value>/bio/package/pacbio/smrtanalysis/current/common/references/4kb_Control</value>
+        </param>
+    </protocol>
+
+        <module label="Fetch v1" id="P_Fetch" editableInJob="true" />
+        <module label="SFilter v1" id="P_Filter" editableInJob="true">
+            <param name="minSubReadLength" label="Minimum Subread Length">
+                <value>50</value>
+            </param>
+            <param name="readScore" label="Minimum Polymerase Read Quality">
+                <value>75</value>
+            </param>
+            <param name="minLength" label="Minimum Polymerase Read Length">
+                <value>50</value>
+            </param>
+        </module>
+        <module label="SFilter Reports v1" id="P_FilterReports" editableInJob="false"/>
+        <module label="BLASR v1" id="P_Mapping" editableInJob="true">
+            <param name="maxHits" label="Maximum number of hits per read" hidden="true">
+                <value>10</value>
+            </param>
+            <param name="maxDivergence" label="Maximum divergence (%)">
+                <value>30</value>
+            </param>
+            <param name="minAnchorSize" label="Minimum anchor size">
+                <value>12</value>
+            </param>
+            <param name="samBam" label="Write output as a BAM file">
+                <value>False</value>
+            </param>
+            <param name="gff2Bed" label="Write BED coverage file">
+                <value>False</value>
+            </param>
+            <param name="placeRepeatsRandomly" label="Place repeats randomly">
+                <value>True</value>
+            </param>
+            <param name="pbalign_opts" hidden="true">
+                <value>--seed=1 --minAccuracy=0.75 --minLength=50 --concordant --algorithmOptions="-useQuality"</value>
+            </param>
+            <param name="pulseMetrics" hidden="true">
+                <value>DeletionQV,IPD,InsertionQV,PulseWidth,QualityValue,MergeQV,SubstitutionQV,DeletionTag</value>
+            </param>
+            <param name="loadPulsesOpts" hidden="true">
+                <value>bymetric</value>
+            </param>
+        </module>
+        <module label="BLASR Reports v1" id="P_MappingReports" editableInJob="false"/>
+
+    <fileName>Mapping.xml</fileName>
+
+</smrtpipeSettings>
